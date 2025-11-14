@@ -1,0 +1,150 @@
+================================================================================
+BN254 CUDA - QUICK START GUIDE
+================================================================================
+
+PREREQUISITES:
+--------------
+✓ NVIDIA GPU (Compute Capability 7.0+)
+✓ NVIDIA Drivers installed
+✓ CUDA Toolkit 11.0+ (install: sudo apt install nvidia-cuda-toolkit)
+✓ GCC/G++ compiler
+✓ Make utility
+
+CHECK YOUR SETUP:
+-----------------
+nvcc --version          # Check CUDA compiler
+nvidia-smi              # Check GPU and drivers
+gcc --version           # Check C++ compiler
+
+BUILDING THE PROJECT:
+---------------------
+
+METHOD 1: Simple Makefile (Fastest)
+-----------------------------------
+cd /home/raham/cuda/bn254_cuda
+make                    # Build all tests
+make test               # Run all tests
+make clean              # Clean build files
+make help               # See all commands
+
+METHOD 2: CMake Build
+---------------------
+cd /home/raham/cuda/bn254_cuda
+mkdir build && cd build
+cmake ..
+make
+./test_basic            # Run specific test
+
+RUNNING TESTS:
+--------------
+
+Run all tests:
+   make test
+
+Run individual tests:
+   make test_basic      # 12 basic functionality tests (~0.5 sec)
+   make test_vectors    # 9 vector operation tests (~2 sec)
+   make test_perf       # 6 performance benchmarks (~10 sec)
+
+Direct execution (after building with Makefile):
+   ./bin/test_basic
+   ./bin/test_vectors
+   ./bin/test_performance
+
+EXPECTED OUTPUT:
+----------------
+[Test] Field Element Creation... PASS
+[Test] Basic Addition (2 + 3 = 5)... PASS
+[Test] Addition with Modulo... PASS
+...
+========================================
+Tests Passed: 12
+Tests Failed: 0
+All tests PASSED!
+
+TROUBLESHOOTING:
+----------------
+
+Error: "nvcc: command not found"
+→ Install CUDA: sudo apt install nvidia-cuda-toolkit
+
+Error: "Driver/library version mismatch"
+→ Reboot: sudo reboot
+→ Or reinstall drivers: sudo ubuntu-drivers autoinstall
+
+Error: "compute_XX is not defined for option 'gpu-architecture'"
+→ Your GPU is too old. Edit Makefile, change GPU_ARCH to lower value (e.g., 61)
+
+Compilation errors:
+→ Try debug build: make DEBUG=1
+→ Check CUDA version: nvcc --version
+→ Ensure GCC version is compatible (GCC 7-11 recommended)
+
+QUICK COMMANDS:
+---------------
+make              # Build everything
+make test         # Run all tests
+make clean        # Clean build
+make info         # Show build configuration
+make help         # Show all available commands
+
+PROJECT FILES:
+--------------
+include/bn254_types.cuh      - Type definitions
+include/field_ops.cuh         - API declarations
+src/field_ops.cu              - CUDA kernels
+src/bn254_api.cpp             - C++ API wrapper
+tests/test_basic.cu           - Basic tests
+tests/test_vectors.cu         - Vector tests
+tests/test_performance.cu     - Benchmarks
+
+README.md                     - Full documentation
+logs.txt                      - Implementation details
+
+NEXT STEPS:
+-----------
+1. Install CUDA toolkit if needed
+2. Run: make
+3. Run: make test_basic
+4. Study the code in include/ and src/
+5. Read README.md for details
+6. Modify and experiment!
+
+LEARNING PATH:
+--------------
+1. Start with include/bn254_types.cuh - understand data structures
+2. Read include/field_ops.cuh - see what operations are available
+3. Study src/field_ops.cu - see CUDA kernel implementations
+4. Run tests/test_basic.cu - verify everything works
+5. Experiment with tests/test_performance.cu - see GPU speedup
+6. Modify code and rebuild to learn
+
+SCALING TO 256-BIT:
+-------------------
+To scale from 16-bit to full BN254 (256-bit):
+1. Edit include/bn254_types.cuh:
+   - Change LIMB_BITS to 64
+   - Change NUM_LIMBS to 4
+   - Update FIELD_MODULUS to full BN254 prime
+2. Implement full multi-limb arithmetic in src/field_ops.cu
+3. Recompute Montgomery constants
+4. Rebuild and test
+
+RESOURCES:
+----------
+BN254 Curve: https://hackmd.io/@jpw/bn254
+CUDA Programming Guide: https://docs.nvidia.com/cuda/
+Project GitHub (docs): Check README.md
+
+SUPPORT:
+--------
+- Check README.md for detailed documentation
+- Review logs.txt for implementation details
+- Enable debug: make DEBUG=1
+- Check errors: Check compiler output carefully
+
+================================================================================
+For help: cat QUICKSTART.txt
+For details: cat README.md
+For implementation: cat logs.txt
+================================================================================
