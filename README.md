@@ -2,7 +2,7 @@
 
 A complete CUDA implementation of BN254 elliptic curve field operations, optimized for learning and testing purposes using simplified 16-bit arithmetic.
 
-## 🎯 Project Overview
+## Project Overview
 
 This project implements finite field arithmetic operations for the BN254 elliptic curve using CUDA for GPU acceleration. It uses **16-bit integers** (4 limbs = 64-bit total) instead of full 256-bit operations to make debugging easier and facilitate learning.
 
@@ -13,7 +13,7 @@ This project implements finite field arithmetic operations for the BN254 ellipti
 - **Educational Focus**: Understand algorithms before scaling to production
 - **Clear Output**: Intermediate values fit in console output
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 bn254_cuda/
@@ -32,7 +32,7 @@ bn254_cuda/
 └── README.md                 # This file
 ```
 
-## ⚙️ Requirements
+## Requirements
 
 - **CUDA Toolkit** 11.0 or later
 - **NVIDIA GPU** with compute capability 7.0+ (Volta or newer recommended)
@@ -40,7 +40,7 @@ bn254_cuda/
 - **CMake** 3.18+ (for CMake build)
 - **Make** (for Makefile build)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option 1: Using Makefile (Recommended for quick builds)
 
@@ -91,7 +91,7 @@ make run_test_performance
 make run_all_tests
 ```
 
-## 📊 Expected Output
+## Expected Output
 
 When running tests, you should see output like:
 
@@ -122,7 +122,7 @@ Total Tests:  12
 All tests PASSED!
 ```
 
-## 🔬 Implemented Operations
+## Implemented Operations
 
 ### Core Field Operations
 
@@ -160,7 +160,7 @@ field_add_batch(results, a_array, b_array, 10000);
 field_mul_batch(results, a_array, b_array, 10000);
 ```
 
-## 🧮 Field Parameters
+## Field Parameters
 
 For this educational implementation:
 
@@ -183,7 +183,7 @@ To scale to full 256-bit BN254:
 4. Recompute Montgomery constants
 5. Update reduction algorithms for multi-limb arithmetic
 
-## 🧪 Testing
+## Testing
 
 ### Test Suites
 
@@ -207,16 +207,16 @@ To scale to full 256-bit BN254:
 
 ### Test Coverage
 
-- ✅ Basic arithmetic correctness
-- ✅ Modular reduction
-- ✅ Overflow/underflow handling
-- ✅ Batch operations
-- ✅ Montgomery multiplication
-- ✅ Edge cases (0, 1, p-1)
-- ✅ Arithmetic properties
-- ✅ GPU-CPU equivalence
+- [x] Basic arithmetic correctness
+- [x] Modular reduction
+- [x] Overflow/underflow handling
+- [x] Batch operations
+- [x] Montgomery multiplication
+- [x] Edge cases (0, 1, p-1)
+- [x] Arithmetic properties
+- [x] GPU-CPU equivalence
 
-## 🎓 Educational Features
+## Educational Features
 
 ### Algorithm Comments
 
@@ -239,7 +239,7 @@ The implementation goes from simple to complex:
 - Element-by-element comparison
 - Clear error messages
 
-## 📈 Performance
+## Performance
 
 Typical performance on RTX 3080 (simplified 16-bit):
 
@@ -251,7 +251,7 @@ Typical performance on RTX 3080 (simplified 16-bit):
 
 *Note: These are educational implementations. Production code would be significantly faster.*
 
-## 🔧 CUDA Kernel Design
+## CUDA Kernel Design
 
 ### Grid-Stride Loop Pattern
 
@@ -276,7 +276,7 @@ __global__ void field_add_kernel(FieldElement* results,
 - **Memory**: Coalesced access patterns
 - **Registers**: Minimal usage for high occupancy
 
-## 🐛 Debugging Tips
+## Debugging Tips
 
 ### Enable Debug Mode
 
@@ -303,7 +303,7 @@ FieldElement elem = FieldElement::from_uint64(12345);
 elem.print();  // Output: [0000 0000 0000 3039]
 ```
 
-## 📚 Learning Resources
+## Learning Resources
 
 ### Understanding the Code
 
@@ -319,7 +319,7 @@ elem.print();  // Output: [0000 0000 0000 3039]
 - **GPU Parallelization**: Thread-per-element processing
 - **Limb Arithmetic**: Multi-precision integer operations
 
-## 🚧 Limitations & Future Work
+## Limitations & Future Work
 
 ### Current Limitations
 
@@ -337,7 +337,7 @@ elem.print();  // Output: [0000 0000 0000 3039]
 - [ ] Multi-GPU support
 - [ ] Inline PTX assembly for critical paths
 
-## 🤝 Contributing
+## Contributing
 
 This is an educational project. Feel free to:
 - Experiment with different optimizations
@@ -345,17 +345,17 @@ This is an educational project. Feel free to:
 - Add more test cases
 - Improve documentation
 
-## 📄 License
+## License
 
 This is educational code for learning purposes. Use freely for learning and research.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - BN254 curve parameters from Barreto-Naehrig paper
 - CUDA programming model from NVIDIA
 - Inspired by various elliptic curve cryptography libraries
 
-## 📞 Support
+## Support
 
 For issues or questions:
 1. Check the test output for error messages
@@ -363,7 +363,7 @@ For issues or questions:
 3. Verify CUDA installation: `nvcc --version`
 4. Check GPU compatibility: `nvidia-smi`
 
-## 🎯 Next Steps
+## Next Steps
 
 After understanding this implementation:
 
@@ -375,6 +375,6 @@ After understanding this implementation:
 
 ---
 
-**Happy Learning!** 🚀
+**Happy Learning!**
 
 This implementation is designed to teach CUDA programming and elliptic curve arithmetic. Master these concepts before moving to production-grade libraries.

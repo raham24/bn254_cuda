@@ -4,11 +4,11 @@ BN254 CUDA - QUICK START GUIDE
 
 PREREQUISITES:
 --------------
-✓ NVIDIA GPU (Compute Capability 7.0+)
-✓ NVIDIA Drivers installed
-✓ CUDA Toolkit 11.0+ (install: sudo apt install nvidia-cuda-toolkit)
-✓ GCC/G++ compiler
-✓ Make utility
+ NVIDIA GPU (Compute Capability 7.0+)
+ NVIDIA Drivers installed
+ CUDA Toolkit 11.0+ (install: sudo apt install nvidia-cuda-toolkit)
+ GCC/G++ compiler
+ Make utility
 
 CHECK YOUR SETUP:
 -----------------
@@ -66,19 +66,19 @@ TROUBLESHOOTING:
 ----------------
 
 Error: "nvcc: command not found"
-→ Install CUDA: sudo apt install nvidia-cuda-toolkit
+ Install CUDA: sudo apt install nvidia-cuda-toolkit
 
 Error: "Driver/library version mismatch"
-→ Reboot: sudo reboot
-→ Or reinstall drivers: sudo ubuntu-drivers autoinstall
+ Reboot: sudo reboot
+ Or reinstall drivers: sudo ubuntu-drivers autoinstall
 
 Error: "compute_XX is not defined for option 'gpu-architecture'"
-→ Your GPU is too old. Edit Makefile, change GPU_ARCH to lower value (e.g., 61)
+ Your GPU is too old. Edit Makefile, change GPU_ARCH to lower value (e.g., 61)
 
 Compilation errors:
-→ Try debug build: make DEBUG=1
-→ Check CUDA version: nvcc --version
-→ Ensure GCC version is compatible (GCC 7-11 recommended)
+ Try debug build: make DEBUG=1
+ Check CUDA version: nvcc --version
+ Ensure GCC version is compatible (GCC 7-11 recommended)
 
 QUICK COMMANDS:
 ---------------
